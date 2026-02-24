@@ -1,0 +1,30 @@
+[
+  {
+    "id": "yourname.affinity_achievements",
+    "repositoryUrl": "https://github.com/yourname/affinity_achievements"
+  },
+  {
+    "id": "yourname.conversation_recap",
+    "repositoryUrl": "https://github.com/yourname/conversation_recap"
+  },
+  {
+    "id": "yourname.conversation_safety_guard",
+    "repositoryUrl": "https://github.com/yourname/conversation_safety_guard"
+  },
+  {
+    "id": "yourname.daily_checkin",
+    "repositoryUrl": "https://github.com/yourname/daily_checkin"
+  },
+  {
+    "id": "yourname.log_sanitizer",
+    "repositoryUrl": "https://github.com/yourname/log_sanitizer"
+  },
+  {
+    "id": "yourname.scene_persona_switcher",
+    "repositoryUrl": "https://github.com/yourname/scene_persona_switcher"
+  },
+  {
+    "id": "yourname.simple_faq_knowledge",
+    "repositoryUrl": "https://github.com/yourname/simple_faq_knowledge"
+  }
+]

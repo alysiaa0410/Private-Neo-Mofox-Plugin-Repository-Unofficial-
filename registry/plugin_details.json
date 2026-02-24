@@ -1,0 +1,187 @@
+[
+  {
+    "id": "yourname.affinity_achievements",
+    "manifest": {
+      "name": "亲密度与成就系统插件",
+      "description": "为 MoFox-Bot 增加亲密度与成就系统，根据对话频率和时长逐步提升用户与机器人的亲密度，并在达到阈值时解锁成就称号，增强长期陪伴感和可玩性。",
+      "usage": "在任意聊天中使用：\n  /affinity         查看当前亲密度与已解锁成就\n插件会根据本进程内记录的对话交互情况，给出一个简单的亲密度等级与称号。",
+      "version": "1.0.0",
+      "author": "yourname",
+      "license": "MIT",
+      "repository_url": "https://github.com/yourname/affinity_achievements",
+      "keywords": [
+        "affinity",
+        "achievement",
+        "gamification",
+        "亲密度",
+        "成就",
+        "陪伴"
+      ],
+      "extra": {
+        "plugin_type": "personality",
+        "chat_type": "all",
+        "is_built_in": false,
+        "min_bot_version": "1.0.0"
+      },
+      "python_dependencies": []
+    }
+  },
+  {
+    "id": "yourname.conversation_recap",
+    "manifest": {
+      "name": "对话简要回顾插件",
+      "description": "为 MoFox-Bot 提供一个简单的对话回顾功能，可以根据近期消息生成一份结构化的小结，帮助用户快速回忆本次对话的大致内容。",
+      "usage": "在任意聊天中使用：\n  /recap          生成最近若干条对话的小结\n插件会从最近的消息中提取关键信息并以项目符号的形式列出。",
+      "version": "1.0.0",
+      "author": "yourname",
+      "license": "MIT",
+      "repository_url": "https://github.com/yourname/conversation_recap",
+      "keywords": [
+        "recap",
+        "summary",
+        "对话回顾",
+        "小结"
+      ],
+      "extra": {
+        "plugin_type": "tools",
+        "chat_type": "all",
+        "is_built_in": false,
+        "min_bot_version": "1.0.0"
+      },
+      "python_dependencies": []
+    }
+  },
+  {
+    "id": "yourname.conversation_safety_guard",
+    "manifest": {
+      "name": "对话情绪分析与安全建议插件",
+      "description": "为 MoFox-Bot 提供基础的情绪倾向分析与安全建议功能，通过指令分析一段话的情绪（如积极、中性、消极、可能高风险），并给出温和的应对建议。",
+      "usage": "在任意聊天中发送指令：\n  /mood 文本内容\n或：\n  心情检测 文本内容\n插件会返回对该文本的情绪判断与安全建议。",
+      "version": "1.0.0",
+      "author": "yourname",
+      "license": "MIT",
+      "repository_url": "https://github.com/yourname/conversation_safety_guard",
+      "keywords": [
+        "emotion",
+        "sentiment",
+        "safety",
+        "情绪",
+        "安全",
+        "关怀"
+      ],
+      "extra": {
+        "plugin_type": "tools",
+        "chat_type": "all",
+        "is_built_in": false,
+        "min_bot_version": "1.0.0"
+      },
+      "python_dependencies": []
+    }
+  },
+  {
+    "id": "yourname.daily_checkin",
+    "manifest": {
+      "name": "每日签到与连击插件",
+      "description": "为 MoFox-Bot 增加一个轻量的每日签到系统，记录用户当日是否签到，并给出连击天数和简单奖励提示，增强用户粘性和互动乐趣（数据仅在当前进程内有效）。",
+      "usage": "在任意聊天中使用：\n  /checkin          今日签到\n  /checkin status   查看当前连击天数\n插件会在本进程内记录你的最后签到日期，并根据连续签到天数返回不同的提示。",
+      "version": "1.0.0",
+      "author": "yourname",
+      "license": "MIT",
+      "repository_url": "https://github.com/yourname/daily_checkin",
+      "keywords": [
+        "checkin",
+        "sign",
+        "gamification",
+        "签到",
+        "连击"
+      ],
+      "extra": {
+        "plugin_type": "entertainment",
+        "chat_type": "all",
+        "is_built_in": false,
+        "min_bot_version": "1.0.0"
+      },
+      "python_dependencies": []
+    }
+  },
+  {
+    "id": "yourname.log_sanitizer",
+    "manifest": {
+      "name": "日志隐私脱敏插件",
+      "description": "在调试与记录日志时，对可能包含手机号、邮箱、身份证号等敏感信息的文本进行简单脱敏处理，降低日志意外泄露用户隐私的风险。",
+      "usage": "在任意聊天中使用：\n  /sanitize 需要脱敏的文本\n插件会返回一个经过基础脱敏后的版本，可用来验证规则是否符合预期，也可以作为实现日志过滤器时的参考实现。",
+      "version": "1.0.0",
+      "author": "yourname",
+      "license": "MIT",
+      "repository_url": "https://github.com/yourname/log_sanitizer",
+      "keywords": [
+        "privacy",
+        "log",
+        "sanitizer",
+        "脱敏",
+        "日志",
+        "安全"
+      ],
+      "extra": {
+        "plugin_type": "system",
+        "chat_type": "all",
+        "is_built_in": false,
+        "min_bot_version": "1.0.0"
+      },
+      "python_dependencies": []
+    }
+  },
+  {
+    "id": "yourname.scene_persona_switcher",
+    "manifest": {
+      "name": "多角色预设与场景切换插件",
+      "description": "为 MoFox-Bot 提供多套可配置的人设与场景预设（如学习助手、日常聊天、严肃顾问等），通过指令一键切换当前会话使用的提示词与语气说明，增强可玩性与可控性。",
+      "usage": "在任意聊天中使用：\n  /scene list         查看可用场景\n  /scene 学习         切换到“学习助手”人设\n  /scene 吐槽         切换到“吐槽搭子”人设\n切换后，插件会返回该场景推荐的人设说明与建议提示词，你可以将其整合到 KFC/AFC 配置中。",
+      "version": "1.0.0",
+      "author": "yourname",
+      "license": "MIT",
+      "repository_url": "https://github.com/yourname/scene_persona_switcher",
+      "keywords": [
+        "persona",
+        "scene",
+        "prompt",
+        "人设",
+        "场景切换",
+        "提示词"
+      ],
+      "extra": {
+        "plugin_type": "prompt",
+        "chat_type": "all",
+        "is_built_in": false,
+        "min_bot_version": "1.0.0"
+      },
+      "python_dependencies": []
+    }
+  },
+  {
+    "id": "yourname.simple_faq_knowledge",
+    "manifest": {
+      "name": "轻量 FAQ 与知识库增强插件",
+      "description": "为 MoFox-Bot 增加一个基于内置配置的轻量 FAQ/知识库系统，对常见问题给出稳定一致的标准答案，降低大模型调用成本并提升可控性。",
+      "usage": "在任意聊天中使用：\n  /faq 关键字\n例如：/faq 帮助\n插件会尝试在内置 FAQ 条目中匹配最相关的问题并返回标准答案。",
+      "version": "1.0.0",
+      "author": "yourname",
+      "license": "MIT",
+      "repository_url": "https://github.com/yourname/simple_faq_knowledge",
+      "keywords": [
+        "faq",
+        "knowledge",
+        "文档",
+        "帮助",
+        "知识库"
+      ],
+      "extra": {
+        "plugin_type": "tools",
+        "chat_type": "all",
+        "is_built_in": false,
+        "min_bot_version": "1.0.0"
+      },
+      "python_dependencies": []
+    }
+  }
+]
