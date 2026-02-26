@@ -1,0 +1,28 @@
+{
+  "name": "每日签到与连击插件",
+  "version": "1.0.0",
+  "description": "为 MoFox-Bot 增加一个轻量的每日签到系统，记录用户当日是否签到，并给出连击天数和简单奖励提示",
+  "author": "yourname",
+  "license": "MIT",
+  "repository_url": "https://github.com/yourname/daily_checkin",
+  "keywords": ["checkin", "sign", "gamification", "签到", "连击"],
+  "plugin_type": "entertainment",
+  "chat_type": "all",
+  "min_bot_version": "1.0.0",
+  "components": [
+    {
+      "signature": "daily_checkin:command:checkin",
+      "type": "command",
+      "name": "checkin",
+      "description": "每日签到并记录连击天数",
+      "aliases": ["签到", "打卡"]
+    }
+  ],
+  "permissions": [
+    {
+      "node": "daily_checkin.use",
+      "description": "可以使用 /checkin 指令进行每日签到与连击统计"
+    }
+  ]
+}
+

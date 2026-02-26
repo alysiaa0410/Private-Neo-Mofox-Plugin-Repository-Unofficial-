@@ -1,0 +1,28 @@
+{
+  "name": "轻量 FAQ 与知识库增强插件",
+  "version": "1.0.0",
+  "description": "为 MoFox-Bot 增加一个基于内置配置的轻量 FAQ/知识库系统，对常见问题给出稳定一致的标准答案",
+  "author": "yourname",
+  "license": "MIT",
+  "repository_url": "https://github.com/yourname/simple_faq_knowledge",
+  "keywords": ["faq", "knowledge", "文档", "帮助", "知识库"],
+  "plugin_type": "tools",
+  "chat_type": "all",
+  "min_bot_version": "1.0.0",
+  "components": [
+    {
+      "signature": "simple_faq_knowledge:command:faq",
+      "type": "command",
+      "name": "faq",
+      "description": "从轻量 FAQ/知识库中查找常见问题的标准答案",
+      "aliases": ["常见问题", "帮助查询"]
+    }
+  ],
+  "permissions": [
+    {
+      "node": "simple_faq_knowledge.use",
+      "description": "可以使用 /faq 指令查询轻量 FAQ / 知识库"
+    }
+  ]
+}
+

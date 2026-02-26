@@ -1,15 +1,9 @@
 """
-Log Sanitizer Plugin
+日志隐私脱敏插件
 
 一个示例性的日志隐私脱敏插件。
-
-说明：
-- 提供 /sanitize 指令，对文本中的手机号、邮箱等做基础掩码；
-- 可以作为实现日志中间件/过滤器时的思路参考；
-- 依赖纯标准库正则，方便修改和扩展。
 """
 
-import re
 from typing import ClassVar
 
 from src.plugin_system import register_plugin
@@ -19,44 +13,27 @@ from src.plugin_system.base.component_types import ChatType, PermissionNodeField
 from src.plugin_system.base.plus_command import PlusCommand
 from src.plugin_system.utils.permission_decorators import require_permission
 
-PHONE_PATTERN = re.compile(r"(1[3-9]\d{9})")
-EMAIL_PATTERN = re.compile(r"([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)")
-ID_PATTERN = re.compile(r"\b(\d{6})(\d{8})(\d{3}[0-9Xx])\b")
-
-
-def sanitize_text(text: str) -> str:
-    """对文本进行简单脱敏。"""
-
-    def _mask_phone(m: re.Match) -> str:
-        s = m.group(1)
-        return s[:3] + "****" + s[-4:]
-
-    def _mask_email(m: re.Match) -> str:
-        name, domain = m.groups()
-        if len(name) <= 2:
-            masked = "*" * len(name)
-        else:
-            masked = name[0] + "*" * (len(name) - 2) + name[-1]
-        return masked + "@" + domain
-
-    def _mask_id(m: re.Match) -> str:
-        head, mid, tail = m.groups()
-        return head + "********" + tail
-
-    text = PHONE_PATTERN.sub(_mask_phone, text)
-    text = EMAIL_PATTERN.sub(_mask_email, text)
-    text = ID_PATTERN.sub(_mask_id, text)
-    return text
+from .config import SanitizerConfig
+from .handlers import TextSanitizer
 
 
 class SanitizeCommand(PlusCommand):
-    """对一段文本进行隐私脱敏。"""
+    """对一段文本进行隐私脱敏"""
 
     command_name: str = "sanitize"
     command_description: str = "对文本中的手机号、邮箱、身份证号等进行基础脱敏"
     command_aliases: ClassVar[list[str]] = ["脱敏", "mask"]
     chat_type_allow: ChatType = ChatType.ALL
     priority: int = 10
+
+    def __init__(self):
+        super().__init__()
+        self.config = SanitizerConfig()
+        self.sanitizer = TextSanitizer(
+            enable_phone=self.config.enable_phone_mask,
+            enable_email=self.config.enable_email_mask,
+            enable_id=self.config.enable_id_mask
+        )
 
     @require_permission("use", deny_message="❌ 你没有权限使用脱敏功能")
     async def execute(self, args: CommandArgs) -> tuple[bool, str | None, bool]:
@@ -68,7 +45,7 @@ class SanitizeCommand(PlusCommand):
             )
             return True, None, False
 
-        masked = sanitize_text(raw)
+        masked = self.sanitizer.sanitize(raw)
         reply = f"🔐 脱敏结果：\n原文：{raw}\n脱敏：{masked}"
         await self.send_text(reply)
         return True, "已返回脱敏结果", True
@@ -76,7 +53,7 @@ class SanitizeCommand(PlusCommand):
 
 @register_plugin
 class LogSanitizerPlugin(BasePlugin):
-    """插件入口类。"""
+    """插件入口类"""
 
     plugin_name: str = "log_sanitizer"
     enable_plugin: bool = True
@@ -91,3 +68,4 @@ class LogSanitizerPlugin(BasePlugin):
             description="可以使用 /sanitize 指令进行文本脱敏",
         )
     ]
+
