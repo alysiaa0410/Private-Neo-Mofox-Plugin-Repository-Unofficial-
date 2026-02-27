@@ -3,27 +3,11 @@
   "version": "1.0.0",
   "description": "为 MoFox-Bot 提供多套可配置的人设与场景预设，通过指令一键切换当前会话使用的提示词与语气说明",
   "author": "yourname",
-  "license": "MIT",
-  "repository_url": "https://github.com/yourname/scene_persona_switcher",
-  "keywords": ["persona", "scene", "prompt", "人设", "场景切换", "提示词"],
-  "plugin_type": "prompt",
-  "chat_type": "all",
-  "min_bot_version": "1.0.0",
-  "dependencies": [],
-  "components": [
-    {
-      "signature": "scene_persona_switcher:command:scene",
-      "type": "command",
-      "name": "scene",
-      "description": "查看或切换当前会话的人设/场景预设",
-      "aliases": ["场景", "人设"]
-    }
-  ],
-  "permissions": [
-    {
-      "node": "scene_persona_switcher.use",
-      "description": "可以使用 /scene 指令查看与切换场景预设"
-    }
-  ]
+  "dependencies": {
+    "plugins": [],
+    "components": []
+  },
+  "entry_point": "plugin.py",
+  "min_core_version": "1.0.0"
 }
 

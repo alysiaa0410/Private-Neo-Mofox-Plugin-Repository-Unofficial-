@@ -3,27 +3,11 @@
   "version": "1.0.0",
   "description": "为 MoFox-Bot 提供一个简单的对话回顾功能，可以根据近期消息生成一份结构化的小结",
   "author": "yourname",
-  "license": "MIT",
-  "repository_url": "https://github.com/yourname/conversation_recap",
-  "keywords": ["recap", "summary", "对话回顾", "小结"],
-  "plugin_type": "tools",
-  "chat_type": "all",
-  "min_bot_version": "1.0.0",
-  "dependencies": [],
-  "components": [
-    {
-      "signature": "conversation_recap:command:recap",
-      "type": "command",
-      "name": "recap",
-      "description": "对当前会话的近期消息生成简单回顾",
-      "aliases": ["回顾", "小结"]
-    }
-  ],
-  "permissions": [
-    {
-      "node": "conversation_recap.use",
-      "description": "可以使用 /recap 指令生成对话回顾"
-    }
-  ]
+  "dependencies": {
+    "plugins": [],
+    "components": []
+  },
+  "entry_point": "plugin.py",
+  "min_core_version": "1.0.0"
 }
 

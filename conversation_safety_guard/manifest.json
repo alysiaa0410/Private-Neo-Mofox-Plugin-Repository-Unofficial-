@@ -3,27 +3,11 @@
   "version": "1.0.0",
   "description": "为 MoFox-Bot 提供基础的情绪倾向分析与安全建议功能，通过指令分析一段话的情绪并给出温和的应对建议",
   "author": "yourname",
-  "license": "MIT",
-  "repository_url": "https://github.com/yourname/conversation_safety_guard",
-  "keywords": ["emotion", "sentiment", "safety", "情绪", "安全", "关怀"],
-  "plugin_type": "tools",
-  "chat_type": "all",
-  "min_bot_version": "1.0.0",
-  "dependencies": [],
-  "components": [
-    {
-      "signature": "conversation_safety_guard:command:mood",
-      "type": "command",
-      "name": "mood",
-      "description": "分析一段话的情绪倾向并给出安全建议",
-      "aliases": ["心情检测", "情绪分析"]
-    }
-  ],
-  "permissions": [
-    {
-      "node": "conversation_safety_guard.use",
-      "description": "可以使用 /mood 情绪分析指令"
-    }
-  ]
+  "dependencies": {
+    "plugins": [],
+    "components": []
+  },
+  "entry_point": "plugin.py",
+  "min_core_version": "1.0.0"
 }
 

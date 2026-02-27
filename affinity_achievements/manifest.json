@@ -3,27 +3,11 @@
   "version": "1.0.0",
   "description": "为 MoFox-Bot 增加亲密度与成就系统，根据对话频率和时长逐步提升用户与机器人的亲密度",
   "author": "yourname",
-  "license": "MIT",
-  "repository_url": "https://github.com/yourname/affinity_achievements",
-  "keywords": ["affinity", "achievement", "gamification", "亲密度", "成就", "陪伴"],
-  "plugin_type": "personality",
-  "chat_type": "all",
-  "min_bot_version": "1.0.0",
-  "dependencies": [],
-  "components": [
-    {
-      "signature": "affinity_achievements:command:affinity",
-      "type": "command",
-      "name": "affinity",
-      "description": "查看当前亲密度等级与成就",
-      "aliases": ["亲密度", "成就"]
-    }
-  ],
-  "permissions": [
-    {
-      "node": "affinity_achievements.use",
-      "description": "可以使用 /affinity 指令查看亲密度信息"
-    }
-  ]
+  "dependencies": {
+    "plugins": [],
+    "components": []
+  },
+  "entry_point": "plugin.py",
+  "min_core_version": "1.0.0"
 }
 

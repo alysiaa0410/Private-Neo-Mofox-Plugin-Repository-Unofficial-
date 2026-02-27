@@ -3,27 +3,11 @@
   "version": "1.0.0",
   "description": "在调试与记录日志时，对可能包含手机号、邮箱、身份证号等敏感信息的文本进行简单脱敏处理",
   "author": "yourname",
-  "license": "MIT",
-  "repository_url": "https://github.com/yourname/log_sanitizer",
-  "keywords": ["privacy", "log", "sanitizer", "脱敏", "日志", "安全"],
-  "plugin_type": "system",
-  "chat_type": "all",
-  "min_bot_version": "1.0.0",
-  "dependencies": [],
-  "components": [
-    {
-      "signature": "log_sanitizer:command:sanitize",
-      "type": "command",
-      "name": "sanitize",
-      "description": "对文本中的手机号、邮箱、身份证号等进行基础脱敏",
-      "aliases": ["脱敏", "mask"]
-    }
-  ],
-  "permissions": [
-    {
-      "node": "log_sanitizer.use",
-      "description": "可以使用 /sanitize 指令进行文本脱敏"
-    }
-  ]
+  "dependencies": {
+    "plugins": [],
+    "components": []
+  },
+  "entry_point": "plugin.py",
+  "min_core_version": "1.0.0"
 }
 
