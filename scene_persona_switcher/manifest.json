@@ -9,6 +9,7 @@
   "plugin_type": "prompt",
   "chat_type": "all",
   "min_bot_version": "1.0.0",
+  "dependencies": [],
   "components": [
     {
       "signature": "scene_persona_switcher:command:scene",

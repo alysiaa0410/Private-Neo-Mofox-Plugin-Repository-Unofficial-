@@ -9,6 +9,7 @@
   "plugin_type": "tools",
   "chat_type": "all",
   "min_bot_version": "1.0.0",
+  "dependencies": [],
   "components": [
     {
       "signature": "simple_faq_knowledge:command:faq",
