@@ -1,99 +1,54 @@
 """
 多角色预设与场景切换插件
-
-多角色预设与场景切换示例插件。
 """
+from mofox.plugin_system.decorators import register_plugin
+from mofox.plugin_system.base_handler import BaseEventHandler
+from mofox.plugin_system.event_types import EventType
+from mofox.core.logger import get_logger
 
-from typing import ClassVar
-
-from src.plugin_system import register_plugin
-from src.plugin_system.base.base_plugin import BasePlugin
-from src.plugin_system.base.command_args import CommandArgs
-from src.plugin_system.base.component_types import ChatType, PermissionNodeField, PlusCommandInfo
-from src.plugin_system.base.plus_command import PlusCommand
-from src.plugin_system.utils.permission_decorators import require_permission
-
-from .config import SceneConfig
-from .handlers import SceneManager
-
-
-class SceneCommand(PlusCommand):
-    """切换会话的人设/场景，并给出推荐提示词"""
-
-    command_name: str = "scene"
-    command_description: str = "查看或切换当前会话的人设/场景预设"
-    command_aliases: ClassVar[list[str]] = ["场景", "人设"]
-    chat_type_allow: ChatType = ChatType.ALL
-    priority: int = 15
-
-    def __init__(self):
-        super().__init__()
-        self.config = SceneConfig()
-        self.manager = SceneManager(self.config.SCENES)
-
-    @require_permission("use", deny_message="❌ 你没有权限使用场景切换功能")
-    async def execute(self, args: CommandArgs) -> tuple[bool, str | None, bool]:
-        raw = (args.raw_args or "").strip()
-        if not raw or raw.lower() == "list":
-            return await self._show_scene_list(args)
-
-        # 按场景中文名匹配
-        scene = self.manager.get_scene(raw)
-        if not scene:
-            await self.send_text(
-                f"未找到名为 "{raw}" 的场景。\n可使用 `/scene list` 查看可用场景列表。"
-            )
-            return True, None, False
-
-        chat_id = getattr(args, "chat_id", None)
-        user_id = getattr(args, "user_id", None)
-        session_key = self.manager.get_session_key(chat_id, user_id)
-        self.manager.set_session_scene(session_key, scene.key)
-
-        reply = (
-            f"✅ 已切换到场景：{scene.display_name}\n"
-            f"简介：{scene.description}\n\n"
-            "以下是推荐的人设提示词，可根据需要整合到 KFC/AFC 配置或其他 Prompt 注入插件中：\n\n"
-            f"{scene.prompt_suggestion}"
-        )
-        await self.send_text(reply)
-        return True, f"切换场景到 {scene.display_name}", True
-
-    async def _show_scene_list(self, args: CommandArgs) -> tuple[bool, str | None, bool]:
-        lines = ["📑 当前可用场景："]
-        for key, scene in self.manager.list_scenes():
-            lines.append(f"- {key}：{scene.display_name} —— {scene.description}")
-
-        chat_id = getattr(args, "chat_id", None)
-        user_id = getattr(args, "user_id", None)
-        session_key = self.manager.get_session_key(chat_id, user_id)
-        current = self.manager.get_session_scene(session_key)
-        
-        if current:
-            for scene in self.config.SCENES.values():
-                if scene.key == current:
-                    lines.append(f"\n当前会话已选择场景：{scene.display_name}")
-                    break
-
-        await self.send_text("\n".join(lines))
-        return True, None, False
+logger = get_logger(__name__)
 
 
 @register_plugin
-class ScenePersonaSwitcherPlugin(BasePlugin):
-    """插件入口类"""
-
-    plugin_name: str = "scene_persona_switcher"
-    enable_plugin: bool = True
-    config_file_name: str = "config.toml"
-
-    def get_plugin_components(self) -> list[tuple[PlusCommandInfo, type[PlusCommand]]]:
-        return [(SceneCommand.get_plus_command_info(), SceneCommand)]
-
-    permission_nodes: ClassVar[list[PermissionNodeField]] = [
-        PermissionNodeField(
-            node_name="use",
-            description="可以使用 /scene 指令查看与切换场景预设",
-        )
-    ]
-
+class ScenePersonaSwitcherPlugin(BaseEventHandler):
+    """多角色预设与场景切换插件"""
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.current_scene = "default"
+        self.scenes = {
+            "default": "默认场景",
+            "professional": "专业助手",
+            "casual": "轻松聊天",
+            "creative": "创意写作",
+        }
+        logger.info("多角色预设与场景切换插件已初始化")
+    
+    def get_event_types(self):
+        """返回此插件监听的事件类型"""
+        return [EventType.ON_MESSAGE_RECEIVED]
+    
+    async def handle(self, event_type, event_data):
+        """处理事件"""
+        if event_type != EventType.ON_MESSAGE_RECEIVED:
+            return
+        
+        message = event_data.get("message", "")
+        
+        # 处理场景切换命令
+        if message.startswith("/scene") or message.startswith("/场景"):
+            await self._handle_scene_command(message)
+    
+    async def _handle_scene_command(self, message):
+        """处理场景切换命令"""
+        parts = message.split()
+        
+        if len(parts) > 1:
+            scene_name = parts[1]
+            if scene_name in self.scenes:
+                self.current_scene = scene_name
+                logger.info(f"切换到场景: {self.scenes[scene_name]}")
+            else:
+                logger.warning(f"未知场景: {scene_name}")
+        else:
+            logger.info(f"当前场景: {self.scenes[self.current_scene]}")

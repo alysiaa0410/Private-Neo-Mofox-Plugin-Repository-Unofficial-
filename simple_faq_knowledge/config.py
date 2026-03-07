@@ -45,3 +45,10 @@ class FAQConfig:
     # 匹配阈值
     match_threshold: float = 0.2
 
+
+
+
+
+
+
+

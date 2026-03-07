@@ -1,13 +1,18 @@
 {
-  "name": "日志隐私脱敏插件",
+  "name": "log_sanitizer",
+  "display_name": "日志隐私脱敏插件",
   "version": "1.0.0",
-  "description": "在调试与记录日志时，对可能包含手机号、邮箱、身份证号等敏感信息的文本进行简单脱敏处理",
-  "author": "yourname",
-  "dependencies": {
-    "plugins": [],
-    "components": []
-  },
+  "author": "满月",
+  "description": "对敏感信息进行脱敏处理",
   "entry_point": "plugin.py",
-  "min_core_version": "1.0.0"
+  "min_core_version": "0.1.0",
+  "dependencies": {},
+  "components": {
+    "commands": [
+      {
+        "signature": "log_sanitizer:command:sanitize",
+        "aliases": ["脱敏", "mask"]
+      }
+    ]
+  }
 }
-

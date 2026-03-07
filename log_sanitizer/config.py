@@ -16,3 +16,10 @@ class SanitizerConfig:
     # 是否启用身份证号脱敏
     enable_id_mask: bool = True
 
+
+
+
+
+
+
+

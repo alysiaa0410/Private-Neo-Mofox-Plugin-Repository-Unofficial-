@@ -1,13 +1,18 @@
 {
-  "name": "多角色预设与场景切换插件",
+  "name": "scene_persona_switcher",
+  "display_name": "多角色预设与场景切换插件",
   "version": "1.0.0",
-  "description": "为 MoFox-Bot 提供多套可配置的人设与场景预设，通过指令一键切换当前会话使用的提示词与语气说明",
-  "author": "yourname",
-  "dependencies": {
-    "plugins": [],
-    "components": []
-  },
+  "author": "满月",
+  "description": "切换不同的对话场景和人设",
   "entry_point": "plugin.py",
-  "min_core_version": "1.0.0"
+  "min_core_version": "0.1.0",
+  "dependencies": {},
+  "components": {
+    "commands": [
+      {
+        "signature": "scene_persona_switcher:command:scene",
+        "aliases": ["场景", "人设"]
+      }
+    ]
+  }
 }
-

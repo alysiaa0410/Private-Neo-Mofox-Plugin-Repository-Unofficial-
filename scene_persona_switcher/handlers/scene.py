@@ -32,3 +32,10 @@ class SceneManager:
             return f"{chat_id}:{user_id}"
         return "global"
 
+
+
+
+
+
+
+
