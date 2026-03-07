@@ -57,3 +57,10 @@ class AffinityHandler:
             'next_target': next_target
         }
 
+
+
+
+
+
+
+

@@ -13,3 +13,10 @@ class CheckinConfig:
     # 是否启用持久化存储（当前版本仅内存存储）
     enable_persistence = False
 
+
+
+
+
+
+
+

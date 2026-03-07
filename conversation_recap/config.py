@@ -13,3 +13,10 @@ class RecapConfig:
     # 消息预览长度限制
     preview_limit: int = 60
 
+
+
+
+
+
+
+

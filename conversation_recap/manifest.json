@@ -1,13 +1,18 @@
 {
-  "name": "对话简要回顾插件",
+  "name": "conversation_recap",
+  "display_name": "对话简要回顾插件",
   "version": "1.0.0",
-  "description": "为 MoFox-Bot 提供一个简单的对话回顾功能，可以根据近期消息生成一份结构化的小结",
-  "author": "yourname",
-  "dependencies": {
-    "plugins": [],
-    "components": []
-  },
+  "author": "满月",
+  "description": "生成近期对话的结构化小结",
   "entry_point": "plugin.py",
-  "min_core_version": "1.0.0"
+  "min_core_version": "0.1.0",
+  "dependencies": {},
+  "components": {
+    "commands": [
+      {
+        "signature": "conversation_recap:command:recap",
+        "aliases": ["回顾", "小结"]
+      }
+    ]
+  }
 }
-

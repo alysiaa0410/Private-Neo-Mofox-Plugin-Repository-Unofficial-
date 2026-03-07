@@ -1,13 +1,24 @@
 {
-  "name": "每日签到与连击插件",
+  "name": "daily_checkin",
   "version": "1.0.0",
-  "description": "为 MoFox-Bot 增加一个轻量的每日签到系统，记录用户当日是否签到，并给出连击天数和简单奖励提示",
-  "author": "yourname",
+  "description": "每日签到与连击插件 - 记录用户签到天数并给出奖励",
+  "author": "满月",
   "dependencies": {
     "plugins": [],
     "components": []
   },
+  "include": [
+    {
+      "component_type": "config",
+      "component_name": "config",
+      "dependencies": []
+    },
+    {
+      "component_type": "event_handler",
+      "component_name": "checkin_command",
+      "dependencies": []
+    }
+  ],
   "entry_point": "plugin.py",
   "min_core_version": "1.0.0"
 }
-

@@ -16,3 +16,10 @@ class AffinityConfig:
         (200, "形影不离的搭子"),
     ]
 
+
+
+
+
+
+
+
